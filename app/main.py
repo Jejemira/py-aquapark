@@ -16,8 +16,6 @@ class IntegerRange:
             obj: Any,
             objtype: None | Any = None
     ) -> int | str:
-        if obj is None:
-            return self
         value = getattr(obj, self.private_name, None)
         return value
 
@@ -81,12 +79,10 @@ class ChildrenSlideLimitationValidator(SlideLimitationValidator):
 
     def __init__(
             self,
-            name: str,
             age: int,
             height: int,
             weight: int
     ) -> None:
-        self.name = name
         super().__init__(age, height, weight)
 
 
@@ -97,12 +93,10 @@ class AdultSlideLimitationValidator(SlideLimitationValidator):
 
     def __init__(
             self,
-            name: str,
             age: int,
             height: int,
             weight: int
     ) -> None:
-        self.name = name
         super().__init__(age, height, weight)
 
 
@@ -121,7 +115,6 @@ class Slide:
     ) -> bool:
         try:
             self.limitation_class(
-                self.name,
                 age=visitor.age,
                 height=visitor.height,
                 weight=visitor.weight
